@@ -9,14 +9,14 @@
         name: httpd
         state: present
 
-    - name: start httpd
+    - name: start Httpd
       service:
         name: httpd
         state: started
 
 
     - name: Enable httpd
-      sercie:
+      service:
         name: httpd
         enabled: yes
 
