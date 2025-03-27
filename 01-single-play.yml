@@ -1,0 +1,15 @@
+---
+- name: Update all servers
+  hosts: all
+  become: yes  # Ensures the playbook runs with sudo privileges
+
+  tasks:
+    - name: Create Directory
+      file:
+        path: /home/centos/opt/devops_dir
+        state: directory
+    - name: Create info.txt with content
+      copy:
+        dest: /opt/devops/info.txt
+        content: "Hello from Ansible!"
+
