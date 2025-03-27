@@ -1,15 +1,44 @@
+# ansible n1 -m file -a "path=/home/ec2-user/n1_dir state=directory"
 ---
-- name: Update all servers
-  hosts: all
-  become: yes  # Ensures the playbook runs with sudo privileges
+- name: Update n1 servers 
+  hosts: n1
 
   tasks:
-    - name: Create Directory
+    - name: Create a directory
       file:
-        path: /home/centos/opt/devops_dir
+        path: /home/ec2-user/new_dir
         state: directory
-    - name: Create info.txt with content
-      copy:
-        dest: /opt/devops/info.txt
-        content: "Hello from Ansible!"
 
+    - name: Create a directory
+      file:
+        path: /home/ec2-user/opt/new_dir_1
+        state: directory
+
+    - name: Update n2 servers
+      hosts: n2
+      
+  tasks:
+    - name: Create a directory
+      file:
+        path: /home/ec2-user/new_dir_1
+        state: directory
+
+    - name: Create a directory
+      file:
+        path: /home/ec2-user/opt/new_dir_2
+        state: directory
+
+    - name: Update group1 servers
+      host: g1
+
+  tasks:
+    - name: Create a directory
+      file:
+        path: /home/ec2-user/new_dir_group1
+        state: directory
+
+    - name: Create a directory
+      file:
+        path: /home/ec2-user/new_dir_group2
+        state: directory
+...

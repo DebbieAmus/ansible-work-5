@@ -1,0 +1,13 @@
+# ansible n1 -m file -a "path=/home/ec2-user/n1_dir state=directory"
+---
+- name: Update n1 servers 
+  hosts: n1
+
+  tasks:
+    - name: Create a directory
+      file:
+        path: /home/ec2-user/opt/new_dir
+        state: directory
+
+   
+
